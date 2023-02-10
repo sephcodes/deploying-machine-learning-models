@@ -48,4 +48,4 @@ Sec 7 also automates building and publishing
 (step between training+testing and deployment) via circleci
 (automating tox -e train and python3 -m build which creates /dist)
 
-test
+testing
