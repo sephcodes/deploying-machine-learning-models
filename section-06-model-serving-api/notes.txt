@@ -1,0 +1,48 @@
+previous section (sec 5), we ran
+python -m pip install --upgrade build
+python -m build
+tox just ran test scripts with sample data
+
+
+we initially deployed this locally using uvicorn
+
+tox command runs test scripts (pytest -vv app/tests/)
+
+tox -e run_app runs this python app/main.py
+accessed api using local url provided
+
+both above do pip install -r test_requirements.txt first
+
+after build, can upload package to PyPI (pip)
+python3 -m pip install --upgrade twine
+python3 -m twine upload --repository testpypi dist/*
+https://test.pypi.org/project/youssef-tid-classification-model/0.0.1/
+
+
+we deployed this to heroku and ran it there
+brew tap heroku/brew && brew install heroku
+heroku --version
+xcode-select --install (if above doesn't work)
+brew tap heroku/brew && brew install heroku
+cd house-prices-api
+heroku create
+cd deploying-machine-learning-models
+git subtree push --prefix section-06-model-serving-api heroku main
+heroku git:remote -a sheltered-crag-44865
+git subtree push --prefix section-06-model-serving-api heroku main
+now can run curl api calls
+also heroku logs --tail
+
+
+Sec 7 automates training+testing (sec 5/6) and deployment (sec 6)
+via circleci
+- need environment variables since circleci is hosted (not installed)
+-- heroku_api_key, heroku_app_name, pip_extra_index_url
+--- api key and app name added in project settings on circleci
+--- pip_extra_index_url for private packages (pii stuff)
+
+in config.yml, specified workflows.jobs are automating manual tasks
+
+Sec 7 also automates building and publishing
+(between training+testing and deployment) via circleci
+(automating tox -e train and python3 -m build which creates /dist)

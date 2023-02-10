@@ -1,0 +1,23 @@
+PACKAGE STRUCTURE
+
+
+parent/
+    regression_model/
+        __init__.py
+        config/
+        datasets/
+        processing/
+        trained_models/
+        config.yml
+        pipeline.py
+        predict.py
+        train_pipeline.py
+        VERSION
+    requirements/
+        requirements.txt
+        test_requirements.txt
+    setup.py
+    MAINFEST.in
+    pyproject.toml
+    tox.ini
+    tests/
