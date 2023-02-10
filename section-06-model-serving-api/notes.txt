@@ -44,5 +44,5 @@ via circleci
 in config.yml, specified workflows.jobs are automating manual tasks
 
 Sec 7 also automates building and publishing
-(between training+testing and deployment) via circleci
+(step between training+testing and deployment) via circleci
 (automating tox -e train and python3 -m build which creates /dist)
