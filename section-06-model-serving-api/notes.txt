@@ -51,3 +51,7 @@ Sec 7 also automates building and publishing
 useful git commands
 git commit -am "changes made"
 git push origin dev(name of github branch)
+
+github releases
+creating a release allows generating a new tag
+-specified in circleci config that new tag triggers publish
