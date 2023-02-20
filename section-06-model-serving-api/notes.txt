@@ -19,6 +19,7 @@ python3 -m twine upload --repository testpypi dist/*
 https://test.pypi.org/project/youssef-tid-classification-model/0.0.1/
 
 
+-- below section is outdated as no longer using heroku; instead using railway
 we deployed this to heroku and ran it there
 brew tap heroku/brew && brew install heroku
 heroku --version
@@ -32,6 +33,12 @@ heroku git:remote -a sheltered-crag-44865
 git subtree push --prefix section-06-model-serving-api heroku main
 now can run curl api calls
 also heroku logs --tail
+
+--railway (https://docs.railway.app/develop/cli)
+brew install railway 
+railway login --browserless
+railway up --detach (make sure in house-prices-api directory)
+after deploy completes, go to service settings and generate domain
 
 
 Sec 7 automates training+testing (sec 5/6) and deployment (sec 6)
