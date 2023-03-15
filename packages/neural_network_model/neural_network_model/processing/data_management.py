@@ -73,6 +73,9 @@ def get_train_test_target(df: pd.DataFrame):
     return X_train, X_test, y_train, y_test
 
 
+# can't save pipeline as obj when using KerasClassifier
+# store each single step of the pipeline as single obj
+# save preprocessor obj in one pickle, classes in another pickle, and model in h5 file
 def save_pipeline_keras(model) -> None:
     """Persist keras model to disk."""
 

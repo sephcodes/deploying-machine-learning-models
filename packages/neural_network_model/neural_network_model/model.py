@@ -1,3 +1,32 @@
+# for reproducibility, need to prevent randomness
+# Seed value
+seed_value= 0
+ 
+# 1. Set `PYTHONHASHSEED` environment variable at a fixed value
+import os
+os.environ['PYTHONHASHSEED']=str(seed_value)
+ 
+# 2. Set `python` built-in pseudo-random generator at a fixed value
+import random
+random.seed(seed_value)
+ 
+# 3. Set `numpy` pseudo-random generator at a fixed value
+import numpy as np
+np.random.seed(seed_value)
+ 
+# 4. Set `tensorflow` pseudo-random generator at a fixed value
+import tensorflow as tf
+tf.set_random_seed(seed_value)
+ 
+# 5. Configure a new global `tensorflow` session
+from keras import backend as K
+session_conf = tf.ConfigProto(intra_op_parallelism_threads=1, inter_op_parallelism_threads=1)
+sess = tf.Session(graph=tf.get_default_graph(), config=session_conf)
+K.set_session(sess)
+
+# also need to prevent randomness in Nvidia cuDNN
+
+
 # for the convolutional network
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Conv2D, MaxPooling2D, Flatten
@@ -8,6 +37,7 @@ from keras.wrappers.scikit_learn import KerasClassifier
 from neural_network_model.config import config
 
 
+# define model as function to call later in KerasClassifier (needed to fit in sklearn pipe)
 def cnn_model(kernel_size=(3, 3),
               pool_size=(2, 2),
               first_filters=32,
